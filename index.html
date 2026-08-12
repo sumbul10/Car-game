@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <title>Road Rush - Car Racing Game</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="game-wrapper">
+
+        <!-- HEADER -->
+        <header class="game-header">
+
+            <div class="brand">
+                <div class="brand-icon">🏎️</div>
+
+                <div>
+                    <h1>ROAD RUSH</h1>
+                    <p>Ultimate Racing</p>
+                </div>
+            </div>
+
+
+            <div class="stats">
+
+                <div class="stat-box">
+                    <span>🏆</span>
+
+                    <div>
+                        <small>SCORE</small>
+                        <strong id="score">0</strong>
+                    </div>
+                </div>
+
+
+                <div class="stat-box">
+                    <span>❤️</span>
+
+                    <div>
+                        <small>LIVES</small>
+                        <strong id="lives">3</strong>
+                    </div>
+                </div>
+
+
+                <div class="stat-box">
+                    <span>⚡</span>
+
+                    <div>
+                        <small>SPEED</small>
+                        <strong id="speed">1x</strong>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- GAME SECTION -->
+        <section class="game-section">
+
+            <div class="road-container">
+
+                <!-- ROAD -->
+                <div class="road" id="road">
+
+                    <!-- ROAD LINES -->
+                    <div class="road-line line-1"></div>
+                    <div class="road-line line-2"></div>
+
+
+                    <!-- PLAYER CAR -->
+                    <div class="player-car" id="player">
+
+                        <div class="car-body">
+
+                            <div class="car-window front-window"></div>
+
+                            <div class="car-window back-window"></div>
+
+                            <div class="headlight left-light"></div>
+                            <div class="headlight right-light"></div>
+
+                        </div>
+
+                        <div class="wheel wheel-left"></div>
+                        <div class="wheel wheel-right"></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- START SCREEN -->
+                <div class="game-overlay" id="startScreen">
+
+                    <div class="result-card">
+
+                        <div class="result-icon">🏎️</div>
+
+                        <h2>ROAD RUSH</h2>
+
+                        <p>Ready for the race?</p>
+
+                        <button class="game-btn" id="startBtn">
+                            ▶ START GAME
+                        </button>
+
+                        <div class="instructions">
+
+                            <div>
+                                ⬅️ ➡️
+                                <span>Move Car</span>
+                            </div>
+
+                            <div>
+                                📱
+                                <span>Touch Controls</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- GAME OVER -->
+                <div class="game-overlay hidden" id="gameOver">
+
+                    <div class="result-card">
+
+                        <div class="result-icon">💥</div>
+
+                        <h2>GAME OVER</h2>
+
+                        <p>Your final score</p>
+
+                        <div class="final-score" id="finalScore">
+                            0
+                        </div>
+
+                        <div class="best-score">
+                            🏆 Best Score:
+                            <span id="bestScore">0</span>
+                        </div>
+
+                        <button class="game-btn" id="restartBtn">
+                            🔄 PLAY AGAIN
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MOBILE CONTROLS -->
+            <div class="mobile-controls">
+
+                <button class="control-btn" id="leftBtn">
+                    ◀
+                </button>
+
+                <button class="control-btn" id="rightBtn">
+                    ▶
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer class="game-footer">
+
+            <span>🏁 Avoid the traffic</span>
+
+            <span>•</span>
+
+            <span>🔥 Beat your high score</span>
+
+        </footer>
+
+    </div>
+
+
+    <!-- IMPORTANT:
+         SCRIPT IS LOADED ONLY ONCE -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>

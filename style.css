@@ -1,0 +1,1244 @@
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #243b55,
+            #080d18 70%
+        );
+
+    color: white;
+}
+
+
+/* =====================================================
+   MAIN GAME
+===================================================== */
+
+.game-wrapper {
+
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.game-header {
+
+    width: 100%;
+
+    min-height: 78px;
+
+    padding: 10px 4%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    background:
+        rgba(7, 13, 25, 0.95);
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.1);
+
+    backdrop-filter: blur(15px);
+
+    z-index: 100;
+}
+
+
+/* BRAND */
+
+.brand {
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.brand-icon {
+
+    width: 48px;
+    height: 48px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff3030,
+            #ff9500
+        );
+
+    font-size: 25px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(255,70,30,0.3);
+}
+
+
+.brand h1 {
+
+    font-size: clamp(
+        18px,
+        2vw,
+        26px
+    );
+
+    letter-spacing: 2px;
+}
+
+
+.brand p {
+
+    margin-top: 3px;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+.stats {
+
+    display: flex;
+
+    gap: 8px;
+}
+
+
+.stat-box {
+
+    min-width: 90px;
+
+    padding: 8px 10px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,255,255,0.07);
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(10px);
+}
+
+
+.stat-box > span {
+
+    font-size: 19px;
+}
+
+
+.stat-box small {
+
+    display: block;
+
+    color: #94a3b8;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+}
+
+
+.stat-box strong {
+
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   GAME SECTION
+===================================================== */
+
+.game-section {
+
+    flex: 1;
+
+    min-height: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    padding: 8px;
+}
+
+
+/* =====================================================
+   ROAD CONTAINER
+===================================================== */
+
+.road-container {
+
+    position: relative;
+
+    width: min(
+        430px,
+        82vw
+    );
+
+    height: 100%;
+
+    max-height:
+        calc(100dvh - 130px);
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: #222;
+
+    box-shadow:
+        0 20px 70px
+        rgba(0,0,0,0.6),
+
+        0 0 0 2px
+        rgba(255,255,255,0.05);
+}
+
+
+/* =====================================================
+   ROAD
+===================================================== */
+
+.road {
+
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            90deg,
+            #202020 0%,
+            #333 8%,
+            #3b3b3b 50%,
+            #333 92%,
+            #202020 100%
+        );
+}
+
+
+/* =====================================================
+   ROAD SIDE MARKINGS
+===================================================== */
+
+.road::before,
+.road::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    width: 5px;
+    height: 100%;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            white 0 30px,
+            #ef4444 30px 60px
+        );
+
+    z-index: 5;
+}
+
+
+.road::before {
+    left: 12px;
+}
+
+
+.road::after {
+    right: 12px;
+}
+
+
+/* =====================================================
+   ROAD LINES
+===================================================== */
+
+.road-line {
+
+    position: absolute;
+
+    top: -100px;
+
+    width: 6px;
+
+    height: 80px;
+
+    background:
+        rgba(255,255,255,0.8);
+
+    border-radius: 10px;
+
+    animation:
+        roadMove 0.65s linear infinite;
+
+    z-index: 2;
+}
+
+
+.line-1 {
+    left: 33.33%;
+}
+
+
+.line-2 {
+    left: 66.66%;
+}
+
+
+@keyframes roadMove {
+
+    from {
+        transform:
+            translateY(-100px);
+    }
+
+    to {
+        transform:
+            translateY(110vh);
+    }
+
+}
+
+
+/* =====================================================
+   PLAYER CAR
+===================================================== */
+
+.player-car {
+
+    position: absolute;
+
+    width: 62px;
+    height: 105px;
+
+    bottom: 25px;
+
+    z-index: 20;
+
+    transition:
+        left 0.12s ease;
+}
+
+
+.car-body {
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius:
+        20px
+        20px
+        13px
+        13px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #991b1b,
+            #ef4444,
+            #991b1b
+        );
+
+    border:
+        2px solid
+        rgba(255,255,255,0.25);
+
+    box-shadow:
+        inset 0 0 15px
+        rgba(255,255,255,0.2),
+
+        0 10px 20px
+        rgba(0,0,0,0.5);
+}
+
+
+/* WINDOWS */
+
+.car-window {
+
+    position: absolute;
+
+    left: 11px;
+
+    width: 36px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #111827,
+            #475569
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.3);
+}
+
+
+.front-window {
+
+    top: 12px;
+
+    height: 25px;
+
+    border-radius:
+        12px
+        12px
+        5px
+        5px;
+}
+
+
+.back-window {
+
+    top: 43px;
+
+    height: 19px;
+
+    border-radius: 5px;
+}
+
+
+/* HEADLIGHTS */
+
+.headlight {
+
+    position: absolute;
+
+    top: 4px;
+
+    width: 11px;
+    height: 7px;
+
+    background: #fef08a;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 12px #fef08a;
+}
+
+
+.left-light {
+    left: 9px;
+}
+
+
+.right-light {
+    right: 9px;
+}
+
+
+/* WHEELS */
+
+.wheel {
+
+    position: absolute;
+
+    width: 9px;
+    height: 25px;
+
+    background: #080808;
+
+    border-radius: 5px;
+
+    z-index: -1;
+}
+
+
+.wheel-left {
+
+    left: -5px;
+    top: 28px;
+}
+
+
+.wheel-right {
+
+    right: -5px;
+    top: 28px;
+}
+
+
+/* =====================================================
+   ENEMY CAR
+===================================================== */
+
+.enemy-car {
+
+    position: absolute;
+
+    width: 58px;
+    height: 98px;
+
+    top: -120px;
+
+    border-radius: 18px;
+
+    border:
+        2px solid
+        rgba(255,255,255,0.2);
+
+    box-shadow:
+        0 10px 20px
+        rgba(0,0,0,0.5);
+
+    z-index: 15;
+}
+
+
+.enemy-car::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 12px;
+    left: 10px;
+
+    width: 34px;
+    height: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #111827,
+            #475569
+        );
+
+    border-radius: 9px;
+}
+
+
+/* =====================================================
+   OVERLAY
+===================================================== */
+
+.game-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 50;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(2,6,23,0.72);
+
+    backdrop-filter: blur(8px);
+}
+
+
+.hidden {
+    display: none;
+}
+
+
+/* =====================================================
+   RESULT CARD
+===================================================== */
+
+.result-card {
+
+    width: min(
+        360px,
+        90%
+    );
+
+    padding: 30px 25px;
+
+    text-align: center;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30,41,59,0.96),
+            rgba(15,23,42,0.96)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,0.6);
+
+    animation:
+        popup 0.3s ease;
+}
+
+
+@keyframes popup {
+
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+.result-icon {
+
+    font-size: 52px;
+
+    margin-bottom: 8px;
+}
+
+
+.result-card h2 {
+
+    font-size: 28px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 8px;
+}
+
+
+.result-card p {
+
+    color: #94a3b8;
+
+    font-size: 14px;
+}
+
+
+/* SCORE */
+
+.final-score {
+
+    font-size: 48px;
+
+    font-weight: 800;
+
+    margin: 10px 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            #f97316,
+            #facc15
+        );
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+}
+
+
+.best-score {
+
+    color: #cbd5e1;
+
+    margin-bottom: 20px;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.game-btn {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ef4444,
+            #f97316
+        );
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 25px
+        rgba(239,68,68,0.3);
+
+    transition: 0.2s;
+}
+
+
+.game-btn:hover {
+
+    transform:
+        translateY(-2px);
+
+    filter:
+        brightness(1.1);
+}
+
+
+.game-btn:active {
+
+    transform:
+        scale(0.97);
+}
+
+
+/* =====================================================
+   INSTRUCTIONS
+===================================================== */
+
+.instructions {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 25px;
+
+    margin-top: 20px;
+
+    color: #94a3b8;
+
+    font-size: 12px;
+}
+
+
+.instructions div {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+/* =====================================================
+   MOBILE CONTROLS
+===================================================== */
+
+.mobile-controls {
+
+    display: none;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    padding-top: 6px;
+}
+
+
+.control-btn {
+
+    width: 62px;
+    height: 45px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.15);
+
+    border-radius: 14px;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    touch-action: manipulation;
+
+    user-select: none;
+
+    -webkit-tap-highlight-color:
+        transparent;
+}
+
+
+.control-btn:active {
+
+    transform: scale(0.92);
+
+    background:
+        rgba(255,255,255,0.18);
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.game-footer {
+
+    min-height: 30px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    color: #64748b;
+
+    font-size: 10px;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .game-header {
+
+        min-height: 65px;
+
+        padding:
+            7px 12px;
+    }
+
+
+    .brand-icon {
+
+        width: 40px;
+        height: 40px;
+
+        font-size: 20px;
+    }
+
+
+    .brand h1 {
+
+        font-size: 16px;
+    }
+
+
+    .brand p {
+
+        display: none;
+    }
+
+
+    .stats {
+
+        gap: 5px;
+    }
+
+
+    .stat-box {
+
+        min-width: 55px;
+
+        padding: 6px;
+
+        justify-content: center;
+    }
+
+
+    .stat-box > span {
+
+        font-size: 15px;
+    }
+
+
+    .stat-box small {
+
+        display: none;
+    }
+
+
+    .stat-box strong {
+
+        font-size: 12px;
+    }
+
+
+    .road-container {
+
+        width:
+            min(390px, 92vw);
+
+        max-height:
+            calc(100dvh - 115px);
+
+        border-radius: 17px;
+    }
+
+
+    .mobile-controls {
+
+        display: flex;
+    }
+
+
+    .game-footer {
+
+        display: none;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .game-header {
+
+        min-height: 58px;
+
+        padding:
+            6px 8px;
+    }
+
+
+    .brand {
+
+        gap: 7px;
+    }
+
+
+    .brand-icon {
+
+        width: 34px;
+        height: 34px;
+
+        border-radius: 9px;
+
+        font-size: 17px;
+    }
+
+
+    .brand h1 {
+
+        font-size: 13px;
+
+        letter-spacing: 1px;
+    }
+
+
+    .stats {
+
+        gap: 3px;
+    }
+
+
+    .stat-box {
+
+        min-width: 43px;
+
+        padding: 5px;
+
+        border-radius: 8px;
+    }
+
+
+    .stat-box > span {
+
+        font-size: 12px;
+    }
+
+
+    .stat-box strong {
+
+        font-size: 10px;
+    }
+
+
+    .game-section {
+
+        padding: 4px;
+    }
+
+
+    .road-container {
+
+        width:
+            min(330px, 88vw);
+
+        max-height:
+            calc(100dvh - 105px);
+
+        border-radius: 15px;
+    }
+
+
+    .player-car {
+
+        width: 55px;
+        height: 94px;
+    }
+
+
+    .enemy-car {
+
+        width: 52px;
+        height: 90px;
+    }
+
+
+    .mobile-controls {
+
+        gap: 15px;
+    }
+
+
+    .control-btn {
+
+        width: 58px;
+        height: 42px;
+
+        font-size: 18px;
+    }
+
+
+    .result-card {
+
+        padding:
+            24px 18px;
+    }
+
+
+    .result-icon {
+
+        font-size: 44px;
+    }
+
+
+    .result-card h2 {
+
+        font-size: 24px;
+    }
+
+}
+
+
+/* =====================================================
+   SMALL HEIGHT PHONE
+===================================================== */
+
+@media (max-height: 650px) {
+
+    .game-header {
+
+        min-height: 52px;
+    }
+
+
+    .road-container {
+
+        max-height:
+            calc(100dvh - 92px);
+    }
+
+
+    .mobile-controls {
+
+        padding-top: 2px;
+    }
+
+
+    .control-btn {
+
+        height: 38px;
+    }
+
+}
+
+
+/* =====================================================
+   LANDSCAPE MOBILE
+===================================================== */
+
+@media
+(max-height: 500px)
+and
+(orientation: landscape) {
+
+    .game-header {
+
+        min-height: 45px;
+
+        padding: 3px 10px;
+    }
+
+
+    .brand-icon {
+
+        width: 30px;
+        height: 30px;
+    }
+
+
+    .brand h1 {
+
+        font-size: 12px;
+    }
+
+
+    .stats {
+
+        gap: 3px;
+    }
+
+
+    .stat-box {
+
+        min-width: 45px;
+
+        padding: 3px;
+    }
+
+
+    .game-section {
+
+        padding: 2px;
+    }
+
+
+    .road-container {
+
+        width: 280px;
+
+        max-height:
+            calc(100dvh - 50px);
+
+        border-radius: 10px;
+    }
+
+
+    .mobile-controls {
+
+        display: none;
+    }
+
+
+    .game-footer {
+
+        display: none;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE SAFE AREA
+===================================================== */
+
+@supports (
+    padding: env(safe-area-inset-bottom)
+) {
+
+    .game-wrapper {
+
+        padding-bottom:
+            env(safe-area-inset-bottom);
+    }
+
+}
